@@ -1,0 +1,74 @@
+.MODEL SMALL
+.STACK 100h 
+.DATA
+    MSG   DB 'ENTER THREE INITIALS: $'
+    FNAME DB ?
+    MNAME DB ?
+    LNAME DB ?
+    
+.CODE
+MAIN PROC
+    
+    MOV AX,@DATA
+    MOV DS,AX
+    
+    LEA DX,MSG
+    MOV AH,9
+    INT 21H
+    
+    MOV AH,1        ;INPUT FIRST NAME
+    INT 21H
+    MOV FNAME,AL 
+    
+    MOV AH,1        ;INPUT MIDDLE NAME
+    INT 21H
+    MOV MNAME,AL
+    
+    MOV AH,1        ;INPUT LAST NAME
+    INT 21H
+    MOV LNAME,AL
+    
+    MOV AH,2        ;CARRIAGE RETURN
+    MOV DL,0DH
+    INT 21H
+                    ;LINE FEED
+    MOV DL,0AH
+    INT 21H
+    
+    MOV DL,FNAME    ;PRINT FIRST NAME
+    INT 21H 
+    
+    MOV DL,0DH
+    INT 21H
+    
+    MOV DL,0AH
+    INT 21H
+                    
+    MOV DL,MNAME    ;PRINT MIDDLE NAME
+    INT 21H 
+    
+    MOV DL,0DH
+    INT 21H
+    
+    MOV DL,0AH
+    INT 21H
+    
+    MOV DL,LNAME    ;PRINT LAST NAME
+    INT 21H 
+    
+    MOV DL,0DH
+    INT 21H
+    
+    MOV DL,0AH
+    INT 21H             
+    
+    
+    ;RETURN TO DOS
+    MOV AH,4CH
+    INT 21H
+    MAIN ENDP
+END MAIN
+
+
+
+
