@@ -1,0 +1,20 @@
+.MODEL SMALL
+.STACK 100H
+.CODE
+
+MAIN PROC
+    CMP AL,0
+    JNL ELSE_IF
+    MOV AL,0FFH
+    JMP END_IF
+ 
+ ELSE_IF:
+    MOV AH,0
+     
+ END_IF:
+    
+    MOV AH,4CH
+    INT 21H
+    
+    MAIN ENDP
+ END MAIN
