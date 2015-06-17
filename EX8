@@ -1,0 +1,44 @@
+.MODEL SMALL
+.STACK 100H
+.DATA
+    CHAR DB ?
+.CODE
+
+MAIN PROC      
+    MOV AH,2
+    MOV DL,'?'
+    INT 21H
+    
+    MOV AH,1
+    INT 21H
+    MOV BL,AL
+    INT 21H
+    MOV CHAR,AL
+    
+    MOV AH,2
+    MOV DL,0DH
+    INT 21H
+    MOV DL,0AH
+    INT 21H
+    
+    CMP CHAR,BL
+    JG  ELSE
+    MOV DL,CHAR
+    INT 21H
+    MOV DL,BL
+    INT 21H
+    JMP END_IF
+ 
+ ELSE:
+    MOV DL,BL
+    INT 21H
+    MOV DL,CHAR
+    INT 21H
+    
+ END_IF:
+    MOV AH,4CH
+    INT 21H   
+    
+    
+    MAIN ENDP
+ END MAIN
