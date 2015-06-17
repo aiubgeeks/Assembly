@@ -1,0 +1,26 @@
+.MODEL SMALL
+.STACK 100H
+.CODE
+
+MAIN PROC      
+    CMP AX,BX
+    JL  ZERO
+    CMP BX,CX
+    JNL ELSE_
+    MOV BX,0
+    JMP END_IF 
+    
+ ELSE_:
+    MOV CX,0
+    JMP END_IF36
+    
+ ZERO:
+    MOV AX,0
+    
+                 
+ END_IF:     
+    MOV AH,4CH
+    INT 21H
+    
+    MAIN ENDP
+ END MAIN
