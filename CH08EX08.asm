@@ -5,7 +5,6 @@
         MOV AH,1
         XOR CX,CX
         
-        
      WHILE:
         INT 21H   
         CMP AL,0DH
